@@ -1,4 +1,4 @@
-#Collection
+# Collection
 
 A simple collection package compatible with PHP 5.4 with no dependencies
 
@@ -9,7 +9,6 @@ A simple collection package compatible with PHP 5.4 with no dependencies
 ```php
 $collection = new Collection(['apple', 'orange', 'peach']);
 
-
 $collection->map(function ($fruit) {
     return 'Don\'t touch my fucking ' . $fruit;
 })->each(function($rule) {
@@ -19,12 +18,14 @@ $collection->map(function ($fruit) {
 
 ### Creating
 
+```php
 $collection = new Collection;
 $collection2 = new Collection([1, 2, 3]);
 $collection3 = new Collection([
     'hello' => 'goodbye',
     'your mother' => 'should know',
 ]);
+```
 
 ### Adding items
 
