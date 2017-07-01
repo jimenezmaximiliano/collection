@@ -1,0 +1,24 @@
+{
+    "name": "jimenezmaximiliano/collection",
+    "description": "A simple collection package compatible with PHP 5.4 with no dependencies",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Maximiliano Jimenez",
+            "email": "jimenez@maximiliano.com.ar"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jimenezmaximiliano\\Collection\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    }
+}
