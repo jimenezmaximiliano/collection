@@ -15,6 +15,8 @@ class CollectionTest extends TestCase
     private $numericArray;
     /** @var  Collection */
     private $numericArrayCollection;
+    /** @var Collection */
+    private $assocArrayCollection;
 
     public function setUp()
     {
@@ -28,6 +30,11 @@ class CollectionTest extends TestCase
         $this->mixedArrayCollection = new Collection($this->mixedArray);
         $this->numericArray = [1, 2, 3, 4];
         $this->numericArrayCollection = new Collection($this->numericArray);
+        $this->assocArrayCollection = new Collection([
+            'key1' => 1,
+            'key2' => 2,
+            'key3' => 3,
+        ]);
     }
 
     public function testEach()
@@ -113,6 +120,16 @@ class CollectionTest extends TestCase
     {
         $expected = [1, 2];
         $resultCollection = $this->numericArrayCollection->filter(function ($number) {
+            return $number < 3;
+        });
+
+        $this->assertEquals($expected, $resultCollection->all());
+    }
+
+    public function testAssocValueFilter()
+    {
+        $expected = ['key1' => 1, 'key2' => 2];
+        $resultCollection = $this->assocArrayCollection->filter(function ($number) {
             return $number < 3;
         });
 
