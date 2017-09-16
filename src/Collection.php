@@ -129,8 +129,7 @@ class Collection implements ArrayAccess, Iterator
         return new self(
             array_filter(
                 $this->items,
-                $callable,
-                ARRAY_FILTER_USE_BOTH
+                $callable
             )
         );
     }
