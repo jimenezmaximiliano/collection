@@ -205,4 +205,32 @@ class CollectionTest extends TestCase
 
         $this->assertEquals(10, $result);
     }
+
+    public function testPopReturn()
+    {
+        $result = $this->numericArrayCollection->pop();
+
+        $this->assertEquals($result, 4);
+    }
+
+    public function testPopElementRemoval()
+    {
+        $result = $this->numericArrayCollection->pop();
+
+        $this->assertFalse($this->numericArrayCollection->hasValue($result));
+    }
+
+    public function testShiftReturn()
+    {
+        $result = $this->numericArrayCollection->shift();
+
+        $this->assertEquals($result, 1);
+    }
+
+    public function testShiftElementRemoval()
+    {
+        $result = $this->numericArrayCollection->shift();
+
+        $this->assertFalse($this->numericArrayCollection->hasValue($result));
+    }
 }

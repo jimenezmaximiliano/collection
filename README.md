@@ -124,6 +124,22 @@ $collection = new Collection(['key' => 'value']);
 $collection->get('key'); // 'value'
 ```
 
+#### shift
+
+```php
+$collection = new Collection(['your sister', 'your mom']);
+
+$collection->shift(); // 'your sister'
+```
+
+#### pop
+
+```php
+$collection = new Collection(['your sister', 'your mom']);
+
+$collection->pop(); // 'your mom'
+```
+
 #### keys
 
 ```php

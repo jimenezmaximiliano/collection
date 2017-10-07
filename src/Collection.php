@@ -258,4 +258,20 @@ class Collection implements ArrayAccess, Iterator
     {
         return array_reduce($this->items, $callable, $initial);
     }
+
+    /**
+     * @return mixed
+     */
+    public function shift()
+    {
+        return array_shift($this->items);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function pop()
+    {
+        return array_pop($this->items);
+    }
 }
