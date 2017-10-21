@@ -274,4 +274,45 @@ class Collection implements ArrayAccess, Iterator
     {
         return array_pop($this->items);
     }
+
+    /**
+     * @param callable $callable
+     * @return Collection
+     */
+    public function sortBy(callable $callable)
+    {
+        return $this->sort($callable);
+    }
+
+    /**
+     * @param callable $callable
+     * @return Collection
+     */
+    public function sortByDesc(callable $callable)
+    {
+        return $this->sort($callable, true);
+    }
+
+    /**
+     * @param callable $callable
+     * @param bool $descending
+     * @return Collection
+     */
+    private function sort(callable $callable, $descending = false)
+    {
+        $results = [];
+
+        foreach ($this->items as $key => $value) {
+            $results[$key] = $callable($value, $key);
+        }
+
+        $descending ? arsort($results, SORT_REGULAR)
+            : asort($results, SORT_REGULAR);
+
+        foreach (array_keys($results) as $key) {
+            $results[$key] = $this->items[$key];
+        }
+
+        return new self($results);
+    }
 }

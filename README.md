@@ -206,3 +206,25 @@ $collection->merge([4]);
 
 $collection->toArray(); // [1, 2, 3, 4]
 ```
+
+#### sortBy
+```php
+$collection = new Collection(3, 1, 2]);
+
+$collection->sortBy(function ($value, $key) {
+    return $value;
+});
+
+$collection->toArray(); // [1, 2, 3]
+```
+
+#### sortByDesc
+```php
+$collection = new Collection(3, 1, 2]);
+
+$collection->sortByDesc(function ($value, $key) {
+    return $value;
+});
+
+$collection->toArray(); // [3, 2, 1]
+```

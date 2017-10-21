@@ -7,16 +7,18 @@ use PHPUnit\Framework\TestCase;
 
 class CollectionTest extends TestCase
 {
-    /** @var  array */
+    /** @var array */
     private $mixedArray;
-    /** @var  Collection */
+    /** @var Collection */
     private $mixedArrayCollection;
-    /** @var  array */
+    /** @var array */
     private $numericArray;
-    /** @var  Collection */
+    /** @var Collection */
     private $numericArrayCollection;
     /** @var Collection */
     private $assocArrayCollection;
+    /** @var Collection */
+    private $scrambledAssocArrayCollection;
 
     public function setUp()
     {
@@ -34,6 +36,12 @@ class CollectionTest extends TestCase
             'key1' => 1,
             'key2' => 2,
             'key3' => 3,
+        ]);
+        $this->scrambledAssocArrayCollection = new Collection([
+            'key1' => 1,
+            'key3' => 3,
+            'key2' => 2,
+            'key4' => 4,
         ]);
     }
 
@@ -232,5 +240,33 @@ class CollectionTest extends TestCase
         $result = $this->numericArrayCollection->shift();
 
         $this->assertFalse($this->numericArrayCollection->hasValue($result));
+    }
+
+    public function testSortBy()
+    {
+        $result = $this->scrambledAssocArrayCollection->sortBy(function ($value) {
+            return $value;
+        });
+
+        $this->assertEquals($result->toArray(), [
+            'key1' => 1,
+            'key2' => 2,
+            'key3' => 3,
+            'key4' => 4,
+        ]);
+    }
+
+    public function testSortDesc()
+    {
+        $result = $this->scrambledAssocArrayCollection->sortByDesc(function ($value) {
+            return $value;
+        });
+
+        $this->assertEquals($result->toArray(), [
+            'key4' => 4,
+            'key3' => 3,
+            'key2' => 2,
+            'key1' => 1,
+        ]);
     }
 }
